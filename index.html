@@ -2,28 +2,77 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>CORTIS</title>
+  <title>martin.exe</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
+<div class="stars"></div>
 
-  <img src="https://i.imgur.com/8Km9tLL.jpg" class="hero">
+<div class="profile">
 
-  <h1 class="title">your sign to know cortis..</h1>
+  <h1>martin.exe</h1>
+  <p class="status">“sleeping on the chaos”</p>
 
-  <div class="buttons">
-    <button onclick="changeText()">INFO</button>
-    <button onclick="glitch()">GLITCH</button>
-    <button onclick="darkMode()">B&W</button>
-    <button onclick="reset()">RESET</button>
+  <div class="layout">
+
+    <!-- LEFT -->
+    <div class="left">
+
+      <img src="https://i.imgur.com/8Km9tLL.jpg" class="pfp">
+
+      <div class="box">
+        <h3>about martin</h3>
+        <p>
+          Martin é o núcleo do Cortis. Ele não é totalmente real,
+          mas também não é só um conceito.
+          Ele existe entre o emocional e o digital.
+        </p>
+      </div>
+
+      <div class="box">
+        <h3>mood</h3>
+        <p>tired but aesthetic</p>
+      </div>
+
+      <div class="box">
+        <h3>interests</h3>
+        <p>noite, glitch, música triste, identidade digital</p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+
+      <div class="box">
+        <h3>who is martin?</h3>
+        <p>
+          Martin representa o lado silencioso do Cortis.
+          Ele observa mais do que fala,
+          sente mais do que demonstra.
+        </p>
+      </div>
+
+      <div class="box">
+        <h3>lore</h3>
+        <p>
+          Dizem que Martin começou como uma ideia,
+          mas foi ganhando forma com cada emoção não dita.
+          Ele vive em páginas esquecidas da internet,
+          em músicas que ninguém assume ouvir.
+        </p>
+      </div>
+
+      <div class="box">
+        <h3>status log</h3>
+        <p id="statusText">online</p>
+        <button onclick="changeStatus()">change vibe</button>
+      </div>
+
+    </div>
+
   </div>
-
-  <p id="info">
-    Cortis é um conceito estético e emocional ligado a intensidade,
-    caos bonito, vibes sombrias e identidade digital.
-  </p>
 
 </div>
 
@@ -33,76 +82,91 @@
 
 <style>
 
-body {
-  background: #111;
-  font-family: Arial, sans-serif;
+  body {
+  margin: 0;
+  font-family: Arial;
+  background: black;
   color: white;
-  text-align: center;
 }
 
-.container {
-  margin-top: 30px;
+/* estrelas fundo */
+.stars {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url("https://i.imgur.com/0Z8FQvK.png");
+  opacity: 0.4;
 }
 
-.hero {
-  width: 300px;
-  filter: hue-rotate(200deg) brightness(0.8);
-  border-radius: 10px;
+/* container */
+.profile {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
 }
 
-.title {
-  font-size: 28px;
-  margin: 15px;
-  text-shadow: 0 0 10px blue;
+/* título */
+h1 {
+  color: hotpink;
+  text-shadow: 0 0 10px pink;
 }
 
-.buttons button {
-  margin: 5px;
+/* layout */
+.layout {
+  display: flex;
+  gap: 20px;
+}
+
+/* colunas */
+.left, .right {
+  width: 50%;
+}
+
+/* boxes estilo antigo */
+.box {
+  background: rgba(255, 0, 150, 0.2);
+  border: 2px solid hotpink;
   padding: 10px;
-  background: linear-gradient(to right, #444, #888);
-  border: none;
-  color: white;
+  margin-bottom: 15px;
+  box-shadow: 0 0 10px pink;
+}
+
+/* foto */
+.pfp {
+  width: 100%;
+  filter: hue-rotate(200deg);
+  margin-bottom: 15px;
+}
+
+/* botão old */
+button {
+  background: black;
+  color: hotpink;
+  border: 1px solid hotpink;
+  padding: 5px;
   cursor: pointer;
 }
 
-.buttons button:hover {
-  background: linear-gradient(to right, #666, #aaa);
+button:hover {
+  background: hotpink;
+  color: black;
 }
-
-#info {
-  margin-top: 20px;
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-.glitch {
-  animation: glitch 0.2s infinite;
-}
-
-@keyframes glitch {
-  0% { transform: translate(2px, -2px); }
-  50% { transform: translate(-2px, 2px); }
-  100% { transform: translate(2px, 2px); }
-}
-
-  </style>
+  
+</style>
 
 <script>
-  function changeText() {
-  document.getElementById("info").innerText =
-    "Cortis = estética + sentimento + identidade. Meio dark, meio caótico, meio você.";
-}
 
-function glitch() {
-  document.body.classList.toggle("glitch");
-}
+  function changeStatus() {
+  const moods = [
+    "offline",
+    "listening to something sad",
+    "feels unreal",
+    "glitching",
+    "lost in cortis"
+  ];
 
-function darkMode() {
-  document.body.style.filter = "grayscale(100%) contrast(120%)";
-}
-
-function reset() {
-  document.body.classList.remove("glitch");
-  document.body.style.filter = "none";
-}
+  const random = moods[Math.floor(Math.random() * moods.length)];
+  document.getElementById("statusText").innerText = random;
+  }
+  
 </script>
