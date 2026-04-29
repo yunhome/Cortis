@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>redred.exe</title>
+<title>martin.exe</title>
 
 <style>
 body {
@@ -10,259 +10,150 @@ body {
   font-family: Arial;
   background: black;
   color: white;
-  overflow-x: hidden;
+  font-size: 12px;
 }
 
-/* fundo estrelas */
-.stars {
+/* fundo 2000s quebrado */
+body::before {
+  content: "";
   position: fixed;
   width: 100%;
   height: 100%;
-  background: url("https://i.imgur.com/0Z8FQvK.png");
-  opacity: 0.3;
-  z-index: 0;
-}
-
-/* container */
-.container {
-  position: relative;
-  z-index: 1;
-  padding: 20px;
+  background: url("https://pin.it/8Y7AhQ4NF");
+  opacity: 0.2;
+  z-index: -1;
 }
 
 /* título */
 h1 {
-  color: hotpink;
-  text-shadow: 0 0 10px pink;
+  color: red;
+  text-shadow: 0 0 5px red;
 }
 
-/* layout estilo perfil */
-.layout {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.left, .right {
-  width: 48%;
-}
-
-/* caixas */
-.box {
-  background: rgba(255, 0, 100, 0.2);
-  border: 2px solid hotpink;
+/* layout simples */
+.container {
   padding: 10px;
-  margin-bottom: 15px;
-  box-shadow: 0 0 10px pink;
+}
+
+.box {
+  border: 2px solid red;
+  padding: 8px;
+  margin-bottom: 10px;
+  background: rgba(255,0,0,0.1);
 }
 
 /* imagem */
-.pfp {
-  width: 100%;
-  filter: hue-rotate(200deg);
-  margin-bottom: 15px;
+img {
+  width: 250px;
+  filter: contrast(120%) saturate(0.8);
 }
 
-/* botão geral */
+/* botão feio anos 2000 */
 button {
-  background: black;
-  color: hotpink;
-  border: 1px solid hotpink;
-  padding: 8px;
+  background: #111;
+  color: red;
+  border: 1px solid red;
+  padding: 5px;
+  font-size: 12px;
   cursor: pointer;
-}
-
-button:hover {
-  background: hotpink;
-  color: black;
-}
-
-/* GAME */
-.game {
-  margin-top: 40px;
-  text-align: center;
-}
-
-#clickBtn {
-  padding: 15px 30px;
-  background: darkred;
-  color: white;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 0 10px red;
-}
-
-#clickBtn:hover {
-  background: red;
 }
 
 /* glitch */
-.glitchRed {
-  animation: glitchRed 0.2s infinite;
+.glitch {
+  animation: glitch 0.1s infinite;
 }
 
-@keyframes glitchRed {
-  0% { transform: translate(2px, 0); }
-  50% { transform: translate(-2px, 2px); }
-  100% { transform: translate(2px, -2px); }
+@keyframes glitch {
+  0% { transform: translate(1px,0); }
+  50% { transform: translate(-1px,1px); }
+  100% { transform: translate(1px,-1px); }
 }
 
-/* efeito texto bugando */
-.broken {
-  animation: flicker 0.1s infinite;
+/* texto piscando */
+.blink {
+  animation: blink 0.5s infinite;
 }
 
-@keyframes flicker {
-  0% { opacity: 1; }
-  50% { opacity: 0.4; }
-  100% { opacity: 1; }
+@keyframes blink {
+  50% { opacity: 0; }
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="stars"></div>
-
 <div class="container">
 
-  <h1>martin.exe</h1>
-  <p>“sleeping on the chaos”</p>
+<h1>martin.exe</h1>
+<p>sleeping on the chaos</p>
 
-  <div class="layout">
+<img src="https://pin.it/8Y7AhQ4NF">
 
-    <!-- ESQUERDA -->
-    <div class="left">
+<div class="box">
+<b>about martin</b>
+<p>
+Ele observa.  
+Ele não responde tudo.  
+E quanto mais você insiste... mais ele aparece.
+</p>
+</div>
 
-      <img src="https://i.imgur.com/8Km9tLL.jpg" class="pfp">
+<div class="box">
+<b>status</b>
+<p id="status">martin is near</p>
+</div>
 
-      <div class="box">
-        <h3>about martin</h3>
-        <p>
-          Martin é o núcleo do Cortis.  
-          Ele existe entre o digital e o emocional.  
-          Nem real, nem imaginário.
-        </p>
-      </div>
+<!-- GAME -->
+<div class="box">
+<b>DON'T CLICK</b>
 
-      <div class="box">
-        <h3>mood</h3>
-        <p>tired but aesthetic</p>
-      </div>
+<p id="gameText">do not click the button</p>
 
-    </div>
+<button id="btn">do not click</button>
 
-    <!-- DIREITA -->
-    <div class="right">
-
-      <div class="box">
-        <h3>who is he?</h3>
-        <p>
-          Ele observa.  
-          Ele nunca fala tudo.  
-          E quanto mais você tenta entender…  
-          mais ele aparece.
-        </p>
-      </div>
-
-      <div class="box">
-        <h3>status</h3>
-        <p id="statusText">online</p>
-        <button onclick="changeStatus()">change vibe</button>
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- GAME -->
-  <div class="game">
-    <h2>redred.exe</h2>
-    <p id="moodText">click to feel something</p>
-
-    <button id="clickBtn">feel</button>
-
-    <p>emotion: <span id="score">0</span></p>
-  </div>
+<p>errors: <span id="score">0</span></p>
+</div>
 
 </div>
 
 <script>
-/* STATUS */
-function changeStatus() {
-  const moods = [
-    "offline",
-    "listening to something sad",
-    "feels unreal",
-    "glitching",
-    "martin is near"
-  ];
-
-  const random = moods[Math.floor(Math.random() * moods.length)];
-  document.getElementById("statusText").innerText = random;
-}
-
-/* GAME */
 let score = 0;
 
-const text = document.getElementById("moodText");
+const text = document.getElementById("gameText");
 const scoreDisplay = document.getElementById("score");
-const btn = document.getElementById("clickBtn");
-
-const moods = [
-  "you feel nothing",
-  "still nothing",
-  "something is wrong",
-  "you feel too much",
-  "stop clicking",
-  "why are you still here",
-  "martin is watching",
-  "this is not a game",
-  "you can't go back",
-  "redred"
-];
+const btn = document.getElementById("btn");
 
 btn.onclick = () => {
   score++;
   scoreDisplay.innerText = score;
 
-  const index = Math.min(score, moods.length - 1);
-  text.innerText = moods[index];
-
-  /* fundo ficando vermelho */
-  document.body.style.backgroundColor =
-    `rgb(${20 + score * 8}, 0, 0)`;
-
-  /* glitch */
-  if (score > 5) {
-    document.body.classList.add("glitchRed");
+  if (score === 1) text.innerText = "i said don't click";
+  if (score === 3) text.innerText = "why are you doing this";
+  if (score === 5) text.innerText = "stop.";
+  if (score === 7) {
+    text.innerText = "martin is watching";
+    document.body.classList.add("glitch");
   }
-
-  /* texto bugando */
-  if (score > 8) {
-    text.classList.add("broken");
+  if (score === 10) {
+    text.innerText = "this is not a game anymore";
+    text.classList.add("blink");
   }
-
-  /* aparição do martin */
-  if (score === 12) {
+  if (score === 13) {
     const img = document.createElement("img");
     img.src = "https://i.imgur.com/8Km9tLL.jpg";
     img.style.position = "fixed";
-    img.style.width = "200px";
-    img.style.top = "30%";
-    img.style.left = "40%";
-    img.style.opacity = "0.2";
-    img.style.pointerEvents = "none";
+    img.style.width = "300px";
+    img.style.top = "20%";
+    img.style.left = "30%";
+    img.style.opacity = "0.3";
     document.body.appendChild(img);
   }
-
-  /* final */
-  if (score > 18) {
-    text.innerText = "martin is here.";
-    document.body.style.background = "black";
-    document.body.classList.remove("glitchRed");
+  if (score === 16) {
+    document.body.style.background = "darkred";
+    text.innerText = "too late";
+  }
+  if (score > 20) {
+    text.innerText = "martin.exe has stopped responding";
   }
 };
 </script>
