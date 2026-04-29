@@ -1,162 +1,132 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>martin.exe</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: black;
-  color: white;
-  font-size: 12px;
+  <meta charset="UTF-8">
+  <title>Martin - RedRed Era</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff0033, #000);
+      color: white;
+      text-align: center;
+    }.container {
+  padding: 20px;
 }
 
-/* fundo 2000s quebrado */
-body::before {
-  content: "";
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: url("https://pin.it/8Y7AhQ4NF");
-  opacity: 0.2;
-  z-index: -1;
-}
-
-/* título */
 h1 {
-  color: red;
-  text-shadow: 0 0 5px red;
+  font-size: 2.5rem;
+  text-shadow: 0 0 10px red;
 }
 
-/* layout simples */
-.container {
-  padding: 10px;
-}
-
-.box {
-  border: 2px solid red;
-  padding: 8px;
-  margin-bottom: 10px;
-  background: rgba(255,0,0,0.1);
-}
-
-/* imagem */
 img {
   width: 250px;
-  filter: contrast(120%) saturate(0.8);
+  border-radius: 20px;
+  margin: 20px 0;
+  box-shadow: 0 0 20px red;
 }
 
-/* botão feio anos 2000 */
+.question-box {
+  margin-top: 20px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 200px;
+}
+
 button {
-  background: #111;
-  color: red;
-  border: 1px solid red;
-  padding: 5px;
-  font-size: 12px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: red;
+  color: white;
   cursor: pointer;
+  margin-left: 10px;
 }
 
-/* glitch */
-.glitch {
-  animation: glitch 0.1s infinite;
+button:hover {
+  background: darkred;
 }
 
-@keyframes glitch {
-  0% { transform: translate(1px,0); }
-  50% { transform: translate(-1px,1px); }
-  100% { transform: translate(1px,-1px); }
+.result {
+  margin-top: 20px;
+  font-size: 1.2rem;
 }
 
-/* texto piscando */
-.blink {
-  animation: blink 0.5s infinite;
+.score {
+  margin-top: 10px;
+  font-size: 1.5rem;
 }
 
-@keyframes blink {
-  50% { opacity: 0; }
-}
-</style>
+  </style>
 </head>
-
 <body>
+  <div class="container">
+    <h1>🔥 Martin - RedRed Era 🔥</h1><img src="https://i.pinimg.com/originals/placeholder.jpg" id="martinImage">
 
-<div class="container">
-
-<h1>martin.exe</h1>
-<p>sleeping on the chaos</p>
-
-<img src="https://pin.it/8Y7AhQ4NF">
-
-<div class="box">
-<b>about martin</b>
-<p>
-Ele observa.  
-Ele não responde tudo.  
-E quanto mais você insiste... mais ele aparece.
-</p>
+<div class="question-box">
+  <p id="question">Carregando pergunta...</p>
+  <input type="text" id="answer" placeholder="Digite sua resposta">
+  <button onclick="checkAnswer()">Enviar</button>
 </div>
 
-<div class="box">
-<b>status</b>
-<p id="status">martin is near</p>
-</div>
+<div class="result" id="result"></div>
+<div class="score" id="score">Pontos: 0</div>
 
-<!-- GAME -->
-<div class="box">
-<b>DON'T CLICK</b>
+  </div>  <script>
+    const questions = [
+      {
+        q: "Qual é o nome do artista?",
+        a: "martin"
+      },
+      {
+        q: "Qual é a era do conceito?",
+        a: "redred"
+      },
+      {
+        q: "Ele é parte de qual grupo?",
+        a: "cortis"
+      },
+      {
+        q: "A estética é mais clara ou escura?",
+        a: "escura"
+      }
+    ];
 
-<p id="gameText">do not click the button</p>
+    let current = 0;
+    let score = 0;
 
-<button id="btn">do not click</button>
+    function loadQuestion() {
+      document.getElementById("question").innerText = questions[current].q;
+    }
 
-<p>errors: <span id="score">0</span></p>
-</div>
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answer").value.toLowerCase();
 
-</div>
+      if (userAnswer.includes(questions[current].a)) {
+        document.getElementById("result").innerText = "✔️ Acertou!";
+        score++;
+      } else {
+        document.getElementById("result").innerText = "❌ Errou!";
+      }
 
-<script>
-let score = 0;
+      document.getElementById("score").innerText = "Pontos: " + score;
 
-const text = document.getElementById("gameText");
-const scoreDisplay = document.getElementById("score");
-const btn = document.getElementById("btn");
+      current++;
+      document.getElementById("answer").value = "";
 
-btn.onclick = () => {
-  score++;
-  scoreDisplay.innerText = score;
+      if (current < questions.length) {
+        loadQuestion();
+      } else {
+        document.getElementById("question").innerText = "Fim do jogo!";
+      }
+    }
 
-  if (score === 1) text.innerText = "i said don't click";
-  if (score === 3) text.innerText = "why are you doing this";
-  if (score === 5) text.innerText = "stop.";
-  if (score === 7) {
-    text.innerText = "martin is watching";
-    document.body.classList.add("glitch");
-  }
-  if (score === 10) {
-    text.innerText = "this is not a game anymore";
-    text.classList.add("blink");
-  }
-  if (score === 13) {
-    const img = document.createElement("img");
-    img.src = "https://i.imgur.com/8Km9tLL.jpg";
-    img.style.position = "fixed";
-    img.style.width = "300px";
-    img.style.top = "20%";
-    img.style.left = "30%";
-    img.style.opacity = "0.3";
-    document.body.appendChild(img);
-  }
-  if (score === 16) {
-    document.body.style.background = "darkred";
-    text.innerText = "too late";
-  }
-  if (score > 20) {
-    text.innerText = "martin.exe has stopped responding";
-  }
-};
-</script>
+    loadQuestion();
 
-</body>
+    // Trocar imagem automaticamente (simulando RedRed vibes)
+    document.getElementById("martinImage").src = "https://pin.it/8Y7AhQ4NF";
+  </script></body>
 </html>
